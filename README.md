@@ -10,17 +10,40 @@ Real-time DMs and PR/Issue side-chat **inside GitHub**, enabling seamless commun
 - **⚡ Real-time Messaging** - Instant message delivery via Socket.IO
 - **🔧 Chrome Extension** - Seamless integration with GitHub UI
 - **🏗️ Modern Tech Stack** - NestJS, Prisma, PostgreSQL, Vue 3, TypeScript
-```
+
 
 ## Quick Start
 
-### Prerequisites
+### Option 1: Automated Installation (Recommended)
+
+We've created a comprehensive installation script that automates the entire setup process:
+
+```bash
+git clone https://github.com/yourusername/gittalk.git
+cd gittalk
+./install.sh
+```
+
+The script will:
+- ✅ Check all prerequisites (Node.js 18+, pnpm 8+, Docker, Docker Compose)
+- ✅ Set up environment files
+- ✅ Install all dependencies
+- ✅ Start the PostgreSQL database
+- ✅ Run database migrations
+- ✅ Build the Chrome extension
+- ✅ Optionally start the development server
+
+### Option 2: Manual Installation
+
+If you prefer to set up manually or need to troubleshoot:
+
+#### Prerequisites
 
 - Node.js 18+ and pnpm 8+
 - Docker and Docker Compose
 - Chrome browser
 
-### 1. Clone and Setup
+#### 1. Clone and Setup
 
 ```bash
 git clone https://github.com/yourusername/gittalk.git
@@ -28,14 +51,14 @@ cd gittalk
 pnpm install
 ```
 
-### 2. Environment Configuration
+#### 2. Environment Configuration
 
 ```bash
 cp .env.example .env
 cp .env server/.env
 ```
 
-### 3. GitHub OAuth App Setup
+#### 3. GitHub OAuth App Setup
 
 1. Go to [GitHub Developer Settings](https://github.com/settings/developers)
 2. Click "New OAuth App"
@@ -45,7 +68,7 @@ cp .env server/.env
    - **Authorization callback URL**: `http://localhost:4000/auth/github/callback`
 4. Copy the Client ID and Client Secret to your `.env` file
 
-### 4. Start the Application
+#### 4. Start the Application
 
 ```bash
 # Start database
@@ -90,6 +113,16 @@ pnpm dev
 3. Join the discussion with other users
 
 ## 🔧 Development
+
+### Quick Setup for Development
+
+If you're setting up for development, use the installation script:
+
+```bash
+./install.sh
+```
+
+This will set up everything you need for development.
 
 ### Server Development
 
