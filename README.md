@@ -1,6 +1,6 @@
 # GitTalk
 
-Real-time DMs and PR/Issue side-chat **inside GitHub*, enabling seamless communication directly to GitHub users and on PR/Issue discussions.
+Real-time DMs and PR/Issue side-chat **inside GitHub**, enabling seamless communication directly to GitHub users and on PR/Issue discussions.
 
 ## Features
 
