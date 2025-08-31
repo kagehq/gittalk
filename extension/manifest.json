@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "GitTalk",
+  "version": "1.0.0",
+  "description": "Chat with GitHub users and discuss PRs/Issues",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://github.com/*",
+    "http://localhost:4000/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://github.com/*"],
+      "js": ["content.js"],
+      "css": ["content.css"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "GitTalk"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["popup.html", "src/popup/*"],
+      "matches": ["https://github.com/*"]
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  githubId  String   @unique
+  login     String   @unique
+  avatarUrl String?
+  createdAt DateTime @default(now())
+
+  // Relations
+  sentMessages     Message[]           @relation("MessageSender")
+  roomParticipants RoomParticipant[]
+
+  @@map("users")
+}
+
+model Room {
+  id         String   @id @default(cuid())
+  type       RoomType
+  contextUrl String?
+  createdAt  DateTime @default(now())
+
+  // Relations
+  participants RoomParticipant[]
+  messages     Message[]
+
+  @@map("rooms")
+}
+
+model RoomParticipant {
+  id     String @id @default(cuid())
+  roomId String
+  userId String
+
+  // Relations
+  room Room @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([roomId, userId])
+  @@map("room_participants")
+}
+
+model Message {
+  id       String   @id @default(cuid())
+  roomId   String
+  senderId String
+  body     String
+  createdAt DateTime @default(now())
+
+  // Relations
+  room   Room @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  sender User @relation("MessageSender", fields: [senderId], references: [id], onDelete: Cascade)
+
+  @@map("messages")
+}
+
+enum RoomType {
+  DM
+  THREAD
+}

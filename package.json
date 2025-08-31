@@ -1,0 +1,46 @@
+{
+  "name": "gittalk",
+  "version": "1.0.0",
+  "description": "Real-time DMs and PR/Issue side-chat inside GitHub",
+  "keywords": [
+    "github",
+    "chat",
+    "chrome-extension",
+    "realtime",
+    "socket.io",
+    "nestjs",
+    "vue",
+    "typescript",
+    "prisma",
+    "postgresql"
+  ],
+  "author": "Treadie, Inc.",
+  "license": "FSL-1.1-MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kagehq/gittalk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kagehq/gittalk/issues"
+  },
+  "homepage": "https://github.com/kagehq/gittalk#readme",
+  "scripts": {
+    "dev": "pnpm run --parallel dev:db dev:server dev:extension",
+    "dev:db": "docker-compose up -d",
+    "dev:server": "pnpm --filter server dev",
+    "dev:extension": "pnpm --filter extension dev",
+    "build": "pnpm run --recursive build",
+    "clean": "pnpm run --recursive clean",
+    "db:generate": "pnpm --filter server db:generate",
+    "db:migrate": "pnpm --filter server db:migrate",
+    "db:studio": "pnpm --filter server db:studio"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  }
+}
